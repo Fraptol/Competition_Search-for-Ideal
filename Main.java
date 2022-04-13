@@ -4,20 +4,15 @@ import java.io.*;
 
 // The main method must be in a class named "Main".
 class Main {/*
-    /*
-    y x---
-    -
-    -
-    -
-    dK
-     -
-      -
-       -
-
-       dNy
-      -
-     -
-    -
+    Csak bemutatásra és ellenzőrzésre.
+                O -> ROW
+                | 
+                v
+                COL
+                
+                O
+              /   \
+           DNy     DKe    
     */
     public static void main(String[] args) {
         String[] matrixRow1 = new String[] {"82", "02", "09", "27", "48", "46", "57", "77", "51", "42", "51", "94", "03", "70", "20", "93", "73", "45", "84", "26", "16", "33", "21", "16", "86"};
@@ -149,7 +144,7 @@ class Main {/*
 
                 /*
                 ~~KUKA~~
-                //kellemesen programozható de lassú
+                //kellemesen programozható erre de lassú
                 int parse=0;
                 if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow1[x]); parse++;
                 if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow2[x]); parse++;
