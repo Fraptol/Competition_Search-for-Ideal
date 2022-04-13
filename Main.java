@@ -48,32 +48,34 @@ class Main {/*
         int[][] valueMatrix= new int[25][25];
         for (int y = 0; y < 25; y++) {      //x
             for (int x = 0; x < 25; x++) {  //y
-                int parse=0;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow1[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow2[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow3[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow4[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow5[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow6[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow7[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow8[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow9[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow10[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow11[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow12[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow13[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow14[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow15[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow16[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow17[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow18[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow19[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow20[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow21[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow22[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow23[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow24[x]); parse++;
-                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow25[x]);  //:)
+                switch (y){ //RowN into y=N-1
+                    case 0:  valueMatrix[x][y] = Integer.parseInt(matrixRow1[x]); break;
+                    case 1:  valueMatrix[x][y] = Integer.parseInt(matrixRow2[x]); break;
+                    case 2:  valueMatrix[x][y] = Integer.parseInt(matrixRow3[x]); break;
+                    case 3:  valueMatrix[x][y] = Integer.parseInt(matrixRow4[x]); break;
+                    case 4:  valueMatrix[x][y] = Integer.parseInt(matrixRow5[x]); break;
+                    case 5:  valueMatrix[x][y] = Integer.parseInt(matrixRow6[x]); break;
+                    case 6:  valueMatrix[x][y] = Integer.parseInt(matrixRow7[x]); break;
+                    case 7:  valueMatrix[x][y] = Integer.parseInt(matrixRow8[x]); break;
+                    case 8:  valueMatrix[x][y] = Integer.parseInt(matrixRow9[x]); break;
+                    case 9:  valueMatrix[x][y] = Integer.parseInt(matrixRow10[x]);break;
+                    case 10: valueMatrix[x][y] = Integer.parseInt(matrixRow11[x]);break;
+                    case 11: valueMatrix[x][y] = Integer.parseInt(matrixRow12[x]);break;
+                    case 12: valueMatrix[x][y] = Integer.parseInt(matrixRow13[x]);break;
+                    case 13: valueMatrix[x][y] = Integer.parseInt(matrixRow14[x]);break;
+                    case 14: valueMatrix[x][y] = Integer.parseInt(matrixRow15[x]);break;
+                    case 15: valueMatrix[x][y] = Integer.parseInt(matrixRow16[x]);break;
+                    case 16: valueMatrix[x][y] = Integer.parseInt(matrixRow17[x]);break;
+                    case 17: valueMatrix[x][y] = Integer.parseInt(matrixRow18[x]);break;
+                    case 18: valueMatrix[x][y] = Integer.parseInt(matrixRow19[x]);break;
+                    case 19: valueMatrix[x][y] = Integer.parseInt(matrixRow20[x]);break;
+                    case 20: valueMatrix[x][y] = Integer.parseInt(matrixRow21[x]);break;
+                    case 21: valueMatrix[x][y] = Integer.parseInt(matrixRow22[x]);break;
+                    case 22: valueMatrix[x][y] = Integer.parseInt(matrixRow23[x]);break;
+                    case 23: valueMatrix[x][y] = Integer.parseInt(matrixRow24[x]);break;
+                    case 24: valueMatrix[x][y] = Integer.parseInt(matrixRow25[x]);break;
+                }
+                //alternatíva alul (KUKA)
         }}
         int bestOsszeg=0;
             int bestStartX=0;
@@ -120,7 +122,7 @@ class Main {/*
         //DIAGONAL DownLeft
         for (int x = 3; x < 25; x++) {
             for (int y = 0; y < (25-3); y++) {
-                int szorzat =(valueMatrix[x][y]* valueMatrix[x+1][y+1]*valueMatrix[x+2][y+2]*valueMatrix[x+3][y+3]);
+                int szorzat =(valueMatrix[x][y]* valueMatrix[x-1][y+1]*valueMatrix[x-2][y+2]*valueMatrix[x-3][y+3]);
                 if (bestOsszeg<szorzat){
                     bestStartX=x;
                     bestStartY=y;
@@ -144,6 +146,35 @@ class Main {/*
                 valueMatrix[bestStartX+xElteres*3][bestStartY+yElteres*3]+".");
         System.out.println("pretty pls.");
     }
+
+                /*
+                ~~KUKA~~
+                //kellemesen programozható de lassú
+                int parse=0;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow1[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow2[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow3[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow4[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow5[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow6[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow7[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow8[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow9[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow10[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow11[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow12[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow13[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow14[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow15[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow16[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow17[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow18[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow19[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow20[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow21[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow22[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow23[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow24[x]); parse++;
+                if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow25[x]);  //:)
+                */
 }
-
-
