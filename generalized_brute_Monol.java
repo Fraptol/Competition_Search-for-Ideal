@@ -24,11 +24,9 @@ import java.io.*;
 |                     -|-                   LGB|
 |<><><><><><><><><><><><><><><><><><><><><><><>|
 (copy: Az ábra talált.)
-
 Minket 4 irányban érdekel a kiolvasás,
 4 egymásutáni elemre,
 pontosabban azok szorzatára.
-
 (x->  y | )
 (       v )
 Irányaink:      Használt kitérés elemenként
@@ -37,7 +35,6 @@ O   -D      y+1
 O   -DKe    x+1,y+1
 O   -DNy    x-1,y+1
 Ahol az "O" az eredeti pontunk.
-
 Azaz egyenlőre nem optimalizált.......
 */
 
@@ -152,7 +149,6 @@ Azaz egyenlőre nem optimalizált.......
                         valueMatrix[x][y] = Integer.parseInt(matrixRow25[x]);
                         break;
                 }
-                //alternatíva alul (KUKA)
             }
         }
         //inic. optimális output
@@ -170,7 +166,10 @@ Azaz egyenlőre nem optimalizált.......
         int wantedLenght = 4;
         int overHang = wantedLenght - 1;
         String[] currentType = {"Row", "Col", "DKe", "DNy"};
+            // a köztes elnevezés segített kitalálni a megfelelő funkciót
         for (trying = 0; trying < 4; trying++) {
+            
+            //* 1) set direction
             if (currentType[trying] == "Row") {
                 dirY = 0;
                 dirX = 1;
@@ -187,6 +186,8 @@ Azaz egyenlőre nem optimalizált.......
                 dirY = 1;
                 dirX = -1;
             }
+            
+            //* 2) checking points(x;y) and validity
             for (int y = 0; y < colLenght + overHang * dirY; y++) {
                 for (int x = 0; x < rowLenght + overHang * dirX; x++) {
                     int szorzat = 1;
@@ -210,10 +211,10 @@ Azaz egyenlőre nem optimalizált.......
 
                 System.out.println("a legjobb szorzat " + bestOsszeg +".");
                 System.out.println("Igeny szerint a megfelelo szamok "+
-                        valueMatrix[bestStartX+dirX*step][bestStartY+dirY*step++]+", "+
-                        valueMatrix[bestStartX+dirX*step][bestStartY+dirY*step++]+", "+
-                        valueMatrix[bestStartX+dirX*step][bestStartY+dirY*step++]+", "+
-                        valueMatrix[bestStartX+dirX*step][bestStartY+dirY*step]  +".");
+                        valueMatrix[bestStartX+dirX*step  ][bestStartY+dirY*step  ]+", "+
+                        valueMatrix[bestStartX+dirX*step+1][bestStartY+dirY*step+1]+", "+
+                        valueMatrix[bestStartX+dirX*step+2][bestStartY+dirY*step+2]+", "+
+                        valueMatrix[bestStartX+dirX*step+3][bestStartY+dirY*step+3]  +".");
                 System.out.println("pretty pls.");
         }
     }
