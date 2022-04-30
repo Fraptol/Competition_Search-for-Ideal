@@ -8,3 +8,4 @@ szóval original simple plan
 De az eredeti működik.
 [search for highest multiple of 4 neighboring in 2d array /row/col/diag/otherDiag via java, js or C#]
 Yet to learn C#
+Could've done parallelization for better run, and maybe [] instead of [][] for better code...
