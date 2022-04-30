@@ -5,14 +5,14 @@ import java.io.*;
 // The main method must be in a class named "Main".
 class Main {/*
     Csak bemutatásra és ellenzőrzésre.
-                O -> ROW
-                | 
-                v
-                COL
+O -> ROW
+| 
+v
+COL
                 
-                O
-              /   \
-           DNy     DKe    
+            O
+           / \
+        DNy   DKe    
     */
     public static void main(String[] args) {
         String[] matrixRow1 = new String[] {"82", "02", "09", "27", "48", "46", "57", "77", "51", "42", "51", "94", "03", "70", "20", "93", "73", "45", "84", "26", "16", "33", "21", "16", "86"};
@@ -71,15 +71,15 @@ class Main {/*
                     case 24: valueMatrix[x][y] = Integer.parseInt(matrixRow25[x]);break;
                 }
                 //alternatíva alul (KUKA)
-        }}
+            }}
         int bestOsszeg=0;
-            int bestStartX=0;
-            int bestStartY=0;
-            String type="none";
+        int bestStartX=0;
+        int bestStartY=0;
+        String type="none";
 
-            //ROW
+        //ROW
         for (int y = 0; y < 25; y++) {
-            for (int x = 0; x < (25-3); x++) {
+            for (int x = 0; x < (25-4); x++) {
                 int szorzat =(valueMatrix[x][y]* valueMatrix[x+1][y]*valueMatrix[x+2][y]*valueMatrix[x+3][y]);
                 if (bestOsszeg<szorzat){
                     bestStartX=x;
@@ -90,8 +90,8 @@ class Main {/*
             }
         }
         //COLOUMN
-        for (int x = 0; x < (25-3); x++) {
-            for (int y = 0; y < 25; y++) {
+        for (int x = 0; x < 25; x++) {
+            for (int y = 0; y < (25-4); y++) {
                 int szorzat =(valueMatrix[x][y]* valueMatrix[x][y+1]*valueMatrix[x][y+2]*valueMatrix[x][y+3]);
                 if (bestOsszeg<szorzat){
                     bestStartX=x;
@@ -102,8 +102,8 @@ class Main {/*
             }
         }
         //DIAGONAL DownRight
-        for (int x = 0; x < (25-3); x++) {
-            for (int y = 0; y < (25-3); y++) {
+        for (int x = 0; x < (25-4); x++) {
+            for (int y = 0; y < (25-4); y++) {
                 int szorzat =(valueMatrix[x][y]* valueMatrix[x+1][y+1]*valueMatrix[x+2][y+2]*valueMatrix[x+3][y+3]);
                 if (bestOsszeg<szorzat){
                     bestStartX=x;
@@ -116,7 +116,7 @@ class Main {/*
 
         //DIAGONAL DownLeft
         for (int x = 3; x < 25; x++) {
-            for (int y = 0; y < (25-3); y++) {
+            for (int y = 0; y < (25-4); y++) {
                 int szorzat =(valueMatrix[x][y]* valueMatrix[x-1][y+1]*valueMatrix[x-2][y+2]*valueMatrix[x-3][y+3]);
                 if (bestOsszeg<szorzat){
                     bestStartX=x;
@@ -128,23 +128,24 @@ class Main {/*
         }
         int xElteres=0;
         int yElteres=0;
-        if (type=="row") xElteres=1;
-        if (type=="col") yElteres=1;
-        if (type=="DKe") {xElteres= 1; yElteres= 1;}
-        if (type=="DNy") {xElteres=-1; yElteres=-1;}
+        String text="";
+        if (type=="row") {xElteres=1; text="Keletre";}
+        if (type=="col") {yElteres=1; text="Delre";}
+        if (type=="DKe") {xElteres= 1; yElteres= 1; text="Del-Keletre";}
+        if (type=="DNy") {xElteres=-1; yElteres=-1; text="Del-Nyugatra";}
 
         System.out.println("a legjobb szorzat " + bestOsszeg +".");
-        System.out.println("Igeny szerint a megfelelo szamok"+
+        System.out.println("Igeny szerint a megfelelo szamok: "+
                 valueMatrix[bestStartX+xElteres*0][bestStartY+yElteres*0]+", "+
                 valueMatrix[bestStartX+xElteres*1][bestStartY+yElteres*1]+", "+
                 valueMatrix[bestStartX+xElteres*2][bestStartY+yElteres*2]+", "+
                 valueMatrix[bestStartX+xElteres*3][bestStartY+yElteres*3]+".");
-        System.out.println("pretty pls.");
+        System.out.println(" Megtalalhato az x:"+bestStartX+"; y:"+bestStartY+" kiindulasi ponttol "+text+" indulva.");
     }
 
                 /*
                 ~~KUKA~~
-                //kellemesen programozható erre de lassú
+                //gondolkodtam rajta, csak mert több sorra kellemesebben programozható, de lassú ebben a formában
                 int parse=0;
                 if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow1[x]); parse++;
                 if(y==parse)  valueMatrix[x][y] = Integer.parseInt(matrixRow2[x]); parse++;
